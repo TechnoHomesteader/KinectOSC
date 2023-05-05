@@ -1,22 +1,16 @@
 import sys
 import time
-from pyk4a import PyK4A, K4AConfig, K4ABTConfig, PyK4ABT
+from pyKinectAzure import PyKinectAzure, _k4a
 from pythonosc import udp_client
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-config = K4AConfig(
-    color_resolution=pyk4a.ColorResolution.RES_720P,
-    depth_mode=pyk4a.DepthMode.NFOV_UNBINNED,
-    synchronized_images_only=True,
-)
+# Replace the path with the path to the kinect_azure.json configuration file
+config_file_path = "path/to/kinect_azure.json"
 
-tracker_config = K4ABTConfig(sensor_orientation=pyk4abt.SensorOrientation.DEFAULT)
-
-k4a = PyK4A(config=config)
-k4a.start()
-k4abt = PyK4ABT(tracker_config)
+k4a = PyKinectAzure(config_file_path)
+k4a.device_start()
 
 osc_ip = "127.0.0.1"
 osc_port = 5005
