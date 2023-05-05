@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Kinect OSC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Azure Kinect OSC</h1>
+    <div class="container">
+        <div class="mode-selection">
+            <label for="mode">Mode:</label>
+            <select name="mode" id="mode" onchange="updateMode()">
+                <option value="passthrough">Passthrough</option>
+                <option value="advanced">Advanced</option>
+                <option value="simple">Simple</option>
+            </select>
+        </div>
+        <div class="osc-settings">
+            <h2>OSC Settings</h2>
+            <label for="ip">IP:</label>
+            <input type="text" id="ip" name="ip" value="127.0.0.1">
+            <label for="port">Port:</label>
+            <input type="text" id="port" name="port" value="5005">
+            <label for="frequency">Frequency:</label>
+            <input type="text" id="frequency" name="frequency" value="30">
+            <button onclick="startSending()">Start</button>
+        </div>
+        <div id="advanced-options" class="hidden">
+            <!-- Advanced options go here -->
+        </div>
+        <div id="simple-options" class="hidden">
+            <!-- Simple options go here -->
+        </div>
+        <div class="status">
+            <h2>Status</h2>
+            <p>Azure Kinect Camera: <span id="camera-status">Not Connected</span></p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
